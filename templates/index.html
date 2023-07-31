@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+</head>
+<body>
+    <!-- Remove items form -->
+    <div id="remove_items">
+        <form action="/remove_items" method="POST">
+            {% for item in shopping_items %}
+               <input type="checkbox" name="check" id="{{item}}" value="{{item}}">
+               <label for="{{item}}" name="{{item}}">{{ item }}</label>
+            {% endfor %} 
+            <input type="submit" value="CHECK ITEMS" id="remove_btn">
+        </form>
+    </div>
+    <!-- Add items form -->
+    <div id="add_item">
+        <form action="/add_items" method="POST">
+            <select name="select_items">
+                {% for item in all_items %}
+                <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+                <input type="submit" value="Add ITEM" id="add_btn">
+            </select>
+        </form>
+    </div>
+</body>
+</html>

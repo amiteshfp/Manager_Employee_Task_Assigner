@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-center">Employee View - My Tasks</h2>
+    <div class="text-center">
+        <a class="btn btn-danger" href="/logout">Logout</a>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in employee_tasks %}
+        <tr {% if task[7] %}class="table-danger"{% endif %}>
+            <td>{{ task[0] }}</td>
+            <td>{{ task[1] }}</td>
+            <td>{{ task[2] }}</td>
+            <td>{{ task[3] }}</td>
+            <td>{{ task[5] }}</td>
+            <td>
+                {% if task[5] == 'todo' %}
+                    <a class="btn btn-primary" href="/mark_inprogress/{{ task[0] }}">Mark In Progress</a>
+                {% elif task[5] == 'inprogress' %}
+                    <a class="btn btn-success" href="/mark_completed/{{ task[0] }}">Mark Completed</a>
+                {% elif task[5] == 'completed' %}
+                    <a class="btn btn-primary" href="/mark_inprogress/{{ task[0] }}">Mark In Progress</a>
+                    <a class="btn btn-warning" href="/mark_todo/{{ task[0] }}">Mark To Do</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+
+

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-center">View All Employees</h2>
+    <div class="text-center">
+        <a class="btn btn-primary" href="/register">Add Employee</a>
+        <a class="btn btn-danger" href="/logout">Logout</a>
+    </div>
+    <table class="table table-striped mt-4">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee[0] }}</td>
+            <td>{{ employee[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

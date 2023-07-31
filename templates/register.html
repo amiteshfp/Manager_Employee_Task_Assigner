@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            <h2 class="text-center mb-4">Register</h2>
+            <form method="POST" action="/register">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="usertype">User Type</label>
+                    <select class="form-control" id="user_type" name="user_type" required>
+                        <option value="manager">Manager</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <p>Already have an account? <a href="/login">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

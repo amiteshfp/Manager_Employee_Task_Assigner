@@ -1,0 +1,41 @@
+<!--  -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Assign Task</h2>
+            <form action="/assign_task" method="post">
+                <div class="form-group">
+                    <label for="task_name">Task Name</label>
+                    <input type="text" class="form-control" id="task_name" name="task_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="due_date">Due Date</label>
+                    <input type="date" class="form-control" id="due_date" name="due_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="assignee">Assign To</label>
+                    <select class="form-control" name="assignee" id="assignee" required>
+                        <option selected disabled>Select Employee</option>
+                        {% for employee in employees %}
+                            <option value="{{ employee[0] }}">{{ employee[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Assign Task</button>
+                    <a class="btn btn-secondary" href="/manager_view">Go Back</a>
+                    <a class="btn btn-danger" href="/logout">Logout</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+

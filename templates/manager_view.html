@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+<style>
+    .overdue {
+        background-color: #ffc0cb; /* Light red */
+    }
+    .td {
+    background-color: yellow !important;
+}
+</style>
+{% block content %}
+    <h2 class="text-center">Manager View - All Tasks</h2>
+    <div class="text-center">
+        <a class="btn btn-primary" href="/assign_task">Assign Task</a>
+        <a class="btn btn-danger" href="/logout">Logout</a>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Assigned to</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr {% if task['overdue'] %}class="table-danger"{% endif %}>
+            <td>{{ task['id'] }}</td>
+            <td>{{ task['task_name'] }}</td>
+            <td>{{ task['description'] }}</td>
+            <td>{{ task['due_date'] }}</td>
+            <td>{{ task['status'] }}</td>
+            <td>{{ task['username'] }}</td>
+            <td></td>
+            <td>
+                <a class="btn btn-primary" href="/edit_task/{{ task['id'] }}">Edit</a>
+                <a class="btn btn-danger" href="/delete_task/{{ task['id'] }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <p><a class="btn btn-primary" href="/view_employees">View Employees</a></p>
+    
+{% endblock %}
